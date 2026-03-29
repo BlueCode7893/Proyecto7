@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Clínica Dental - Gestión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        body { background-color: #f8f9fa; }
+        .card-paciente { border-radius: 12px; border: 0; transition: 0.3s; }
+        .card-paciente:hover { transform: translateY(-2px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .historial-item { border-left: 5px solid #198754; background: white; border-radius: 10px; }
+        .bg-primary-custom { background-color: #0d6efd; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-primary-custom shadow-sm mb-4">
+        <div class="container">
+            <span class="navbar-brand fw-bold"><i class="bi bi-shield-plus"></i> Panel Dental</span>
+            <div>
+                <button class="btn btn-light btn-sm fw-bold me-2" onclick="abrirModalNuevo()">+ Nuevo Paciente</button>
+                <span id="infoUsuario" class="text-white small me-2"></span>
+                <button class="btn btn-outline-light btn-sm" onclick="cerrarSesion()">Salir</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-7">
+                <h6 class="text-muted fw-bold mb-3 text-uppercase small">Agenda de Hoy</h6>
+                <div id="contenedorCitas"></div>
+            </div>
+
+            <div class="col-md-5">
+                <h6 class="text-muted fw-bold mb-3 text-uppercase small">Historial y Recaudación</h6>
+                
+                <div class="card mb-3 border-0 shadow-sm p-3 bg-white">
+                    <div class="input-group mb-2">
+                        <span class="input-group-text bg-white border-end-0"><i class="bi bi-search"></i></span>
+                        <input type="text" id="busquedaHistorial" class="form-control border-start-0" placeholder="Buscar por nombre o diagnóstico..." onkeyup="filtrarHistorial()">
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mt-1">
+                        <small class="fw-bold text-secondary">TOTAL RECAUDADO:</small>
+                        <span id="montoTotalHistorial" class="badge bg-success fs-6">$0</span>
+                    </div>
+                </div>
+
+                <div id="contenedorHistorial"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalCita" tabindex="-1">
+        <div class="modal-dialog">
+            <form id="formCita" class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="tituloModal">Paciente</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="editCitaId">
+                    <div class="row g-2 mb-2">
+                        <div class="col-6">
+                            <label class="small fw-bold">Nombre</label>
+                            <input type="text" id="citaNombre" class="form-control" required>
+                        </div>
+                        <div class="col-6">
+                            <label class="small fw-bold">Apellidos</label>
+                            <input type="text" id="citaApellidos" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="small fw-bold">Fecha de Nacimiento</label>
+                        <input type="date" id="citaNacimiento" class="form-control" required>
+                    </div>
+                    <div class="mb-2">
+                        <label class="small fw-bold">Procedimiento</label>
+                        <input type="text" id="citaProc" class="form-control" required>
+                    </div>
+                    <div class="row g-2">
+                        <div class="col-6">
+                            <label class="small fw-bold">Profesional</label>
+                            <input type="text" id="citaProf" class="form-control" required>
+                        </div>
+                        <div class="col-6">
+                            <label class="small fw-bold">Fecha Cita</label>
+                            <input type="datetime-local" id="citaFecha" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"><button type="submit" class="btn btn-primary w-100">Guardar</button></div>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalAtencion" tabindex="-1">
+        <div class="modal-dialog">
+            <form id="formAtencion" class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title">Registrar Atención</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="atencionCitaId">
+                    <div class="mb-2">
+                        <label class="small fw-bold">Paciente</label>
+                        <input type="text" id="atencionNombre" class="form-control bg-light" readonly>
+                    </div>
+                    <div class="mb-2">
+                        <label class="small fw-bold">Diagnóstico</label>
+                        <textarea id="atencionDiagnostico" class="form-control" rows="2" required></textarea>
+                    </div>
+                    <div class="mb-2">
+                        <label class="small fw-bold">Insumos</label>
+                        <input type="text" id="atencionInsumos" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label class="small fw-bold">Observaciones</label>
+                        <textarea id="atencionObservaciones" class="form-control" rows="2"></textarea>
+                    </div>
+                    <div class="mb-0">
+                        <label class="small fw-bold">Monto a Cobrar</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="number" id="atencionMonto" class="form-control" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"><button type="submit" class="btn btn-success w-100">Finalizar</button></div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="aplicacion.js"></script>
+</body>
+</html>

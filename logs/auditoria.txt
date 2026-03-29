@@ -1,0 +1,32 @@
+[CREACIÓN] Paciente: Armando Casas - Fecha: 27-03-2026, 10:56:47 p. m.
+[MODIFICACIÓN] ID: 7 - Paciente: Armando - Fecha: 27-03-2026, 10:57:16 p. m.
+[MODIFICACIÓN] ID: 7 - Paciente: Armando - Fecha: 27-03-2026, 11:02:53 p. m.
+[MODIFICACIÓN] ID: 7 - Paciente: Armando - Fecha: 27-03-2026, 11:03:47 p. m.
+[MODIFICACIÓN] ID: 7 - Paciente: Armando - Fecha: 27-03-2026, 11:04:03 p. m.
+[CREACIÓN] Paciente: Cicla Dora - Fecha: 27-03-2026, 11:08:44 p. m.
+[MODIFICACIÓN] ID: 8 - Paciente: Cicla - Fecha: 27-03-2026, 11:09:00 p. m.
+[MODIFICACIÓN] ID: 8 - Paciente: Cicla - Fecha: 27-03-2026, 11:09:09 p. m.
+[MODIFICACIÓN] ID: 8 - Paciente: Cicla - Fecha: 27-03-2026, 11:09:33 p. m.
+[MODIFICACIÓN] ID: 8 - Paciente: Cicla - Fecha: 27-03-2026, 11:09:44 p. m.
+[MODIFICACIÓN] ID: 7 - Reagendado para: 2026-03-01T22:00 - Fecha: 27-03-2026, 11:17:40 p. m.
+[LOGIN] Usuario: admin accedió al sistema - 27-03-2026, 11:42:19 p. m.
+[MODIFICACIÓN] ID Cita: 7 - Fecha: 27-03-2026, 11:50:29 p. m.
+[27-03-2026, 11:53:25 p. m.] CITA ACTUALIZADA ID: 5
+[27-03-2026, 11:53:44 p. m.] CITA ACTUALIZADA ID: 5
+[27-03-2026, 11:54:41 p. m.] ATENCIÓN REGISTRADA PARA CITA ID: 6
+[27-03-2026, 11:55:55 p. m.] CITA ELIMINADA ID: 6
+[27-03-2026, 11:59:18 p. m.] ALERTA: Intento de borrado NO AUTORIZADO en Cita ID 8
+[27-03-2026, 11:59:27 p. m.] ELIMINACIÓN AUTORIZADA: Cita ID 8 por admin
+[28-03-2026, 12:01:28 a. m.] CITA ACTUALIZADA ID: 7
+[28-03-2026, 12:01:42 a. m.] CITA ACTUALIZADA ID: 5
+[28-03-2026, 12:02:25 a. m.] LOGIN EXITOSO: dentista1
+[28-03-2026, 12:08:17 a. m.] LOGIN EXITOSO: admin
+[28-03-2026, 12:08:33 a. m.] LOGIN EXITOSO: dentista1
+[28-03-2026, 12:42:50 p. m.] LOGIN EXITOSO: dentista1
+[28-03-2026, 2:43:08 p. m.] ELIMINACIÓN: Cita ID 1
+[28-03-2026, 2:43:23 p. m.] ELIMINACIÓN: Cita ID 2
+[28-03-2026, 3:01:38 p. m.] EDICIÓN: Cita ID 2 actualizada
+[28-03-2026, 3:04:20 p. m.] EDICIÓN: Cita ID 1 actualizada
+[28-03-2026, 3:30:00 p. m.] EDICIÓN: Cita ID 1 actualizada
+[28-03-2026, 3:30:26 p. m.] EDICIÓN: Cita ID 2 actualizada
+[28-03-2026, 3:30:55 p. m.] EDICIÓN: Cita ID 4 actualizada
